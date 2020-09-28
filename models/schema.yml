@@ -7,6 +7,10 @@ sources:
       - name: customers
       - name: orders
       - name: payment
+  - name : stripe
+    database: raw
+    tables:
+      - name: payment
 
 
 models:
