@@ -1,5 +1,14 @@
 version: 2
 
+sources:
+  - name: jaffle_shop
+    database: raw
+    tables:
+      - name: customers
+      - name: orders
+      - name: payment
+
+
 models:
   - name: customers
     description: "{{ doc('customers') }}"
@@ -33,3 +42,11 @@ models:
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+  - name: orders
+    description: Aggregate total_order_amount, coupon_amount, and actual_revenue on each order. One row per order id, customer id, and date. Derived from stg_orders and stg_payments. Filter out any payments where staus is not 'success'
+    columns:
+      - name: order_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
