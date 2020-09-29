@@ -6,5 +6,5 @@ SELECT
     to_decimal((amount / 100),10,2) as amount,
     created,
     _BATCHED_AT
-FROM {{ source('jaffle_shop', 'payment') }}
+FROM {{ source('stripe', 'payment') }}
 --FROM raw.stripe.payment
